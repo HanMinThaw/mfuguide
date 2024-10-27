@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mfu_guide"
+    namespace = "com.example.mfu_guide2024"
     compileSdk = 34
     ndkVersion = flutter.ndkVersion
 

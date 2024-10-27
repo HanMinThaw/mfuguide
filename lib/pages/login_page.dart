@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mfu_guide/pages/landing_page.dart';
+import '../auth_services.dart';
 import '../components/google_signup_button.dart';
 import '../components/login_button.dart';
 import '../components/text_area.dart';
@@ -93,6 +94,30 @@ class _LoginPageState extends State<LoginPage> {
                 GoogleSingUpButton(
                   img: 'images/google.png',
                   buttonName: 'Sing Up with Google',
+                  onClick: () async {
+                    try {
+                      UserCredential userCredential =
+                          await AuthService().signInWithGoogle();
+                      if (userCredential != null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return LandingPage();
+                            },
+                          ),
+                        );
+                      }
+                    } catch (e) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Text('Google Sign-In Failed'),
+                          content: Text(e.toString()),
+                        ),
+                      );
+                    }
+                  },
                 ),
               ],
             ),

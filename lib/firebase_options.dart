@@ -52,7 +52,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCiPsgZDwEUGfbsNHk7VefA7wf0A27lqvg',
-    appId: '1:883547114135:android:6c85cad9d6ae4b1121f7d2',
+    appId: '1:883547114135:android:17da9d506c69af1b21f7d2',
     messagingSenderId: '883547114135',
     projectId: 'mfuguide-backend',
     storageBucket: 'mfuguide-backend.appspot.com',
@@ -64,6 +64,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '883547114135',
     projectId: 'mfuguide-backend',
     storageBucket: 'mfuguide-backend.appspot.com',
+    androidClientId: '883547114135-6dfsag1421al6j4crstbimmtt4knt97j.apps.googleusercontent.com',
+    iosClientId: '883547114135-oq882v6vpglimsuktcj8lffud3nvpbqg.apps.googleusercontent.com',
     iosBundleId: 'com.example.mfuGuide',
   );
 
@@ -73,6 +75,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '883547114135',
     projectId: 'mfuguide-backend',
     storageBucket: 'mfuguide-backend.appspot.com',
+    androidClientId: '883547114135-6dfsag1421al6j4crstbimmtt4knt97j.apps.googleusercontent.com',
+    iosClientId: '883547114135-oq882v6vpglimsuktcj8lffud3nvpbqg.apps.googleusercontent.com',
     iosBundleId: 'com.example.mfuGuide',
   );
 
@@ -85,4 +89,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'mfuguide-backend.appspot.com',
     measurementId: 'G-N48SSHL6JJ',
   );
+
 }

@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 class GoogleSingUpButton extends StatelessWidget {
   final String? img;
   final String? buttonName;
-  GoogleSingUpButton({required this.img, this.buttonName});
+  final Function()? onClick;
+  GoogleSingUpButton(
+      {required this.img, required this.buttonName, required this.onClick});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: onClick!,
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),
