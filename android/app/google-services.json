@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "883547114135",
+    "project_id": "mfuguide-backend",
+    "storage_bucket": "mfuguide-backend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883547114135:android:6c85cad9d6ae4b1121f7d2",
+        "android_client_info": {
+          "package_name": "com.example.mfu_guide"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiPsgZDwEUGfbsNHk7VefA7wf0A27lqvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
