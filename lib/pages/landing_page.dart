@@ -25,6 +25,7 @@ class _LandingPageState extends State<LandingPage> {
       if (user != null) {
         loggedInUser = user;
         print(loggedInUser!.email!);
+        print(loggedInUser!.displayName);
       }
     } catch (e) {
       print(e);
