@@ -1,5 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mfu_guide/auth_services.dart';
+import 'package:mfu_guide/pages/chat_page.dart';
+import 'package:mfu_guide/pages/contact_page.dart';
+import 'package:mfu_guide/pages/home_page.dart';
 
 class LandingPage extends StatefulWidget {
   static const String id = 'chat_screen';
@@ -10,36 +13,79 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  final _auth = FirebaseAuth.instance;
-  User? loggedInUser;
+  final _authService = AuthService();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getCurrentUser();
+    _authService.getCurrentUser();
   }
 
-  void getCurrentUser() async {
-    try {
-      final user = await _auth.currentUser;
-      if (user != null) {
-        loggedInUser = user;
-        print(loggedInUser!.email!);
-        print(loggedInUser!.displayName);
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
-
+  int currentPageIndex = 0;
+  final List<String> appbarTitle = ['Home', 'Chat', 'Contact'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          child: Text('welcome'),
+      appBar: AppBar(
+        title: Text(appbarTitle[currentPageIndex]),
+        actions: [
+          // CircleAvatar(
+          //   radius: 35,
+          //   backgroundColor: Colors.blue,
+          // ),
+          // Icon(
+          //   Icons.notifications,
+          //   size: 35,
+          // ),
+          // Icon(
+          //   Icons.menu,
+          //   size: 35,
+          // )
+        ],
+      ),
+      endDrawer: Drawer(
+        child: ListView(
+          children: [
+            Text('Student Name'),
+            Text('Student ID'),
+            TextButton(
+                onPressed: _authService.signOut,
+                child: Row(
+                  children: [
+                    Icon(Icons.logout),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text('Log Out')
+                  ],
+                ))
+          ],
         ),
       ),
+      bottomNavigationBar: NavigationBar(
+        backgroundColor: Color(0xFFD9D9D9),
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+        indicatorColor: Colors.grey.shade500,
+        selectedIndex: currentPageIndex,
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          NavigationDestination(icon: Icon(Icons.assistant), label: 'Chat'),
+          NavigationDestination(
+              icon: Icon(Icons.account_circle_rounded), label: 'Contact'),
+        ],
+      ),
+      body: <Widget>[
+        HomePage(),
+        ChatPage(),
+        ContactPage(),
+      ][currentPageIndex],
     );
   }
 }

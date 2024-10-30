@@ -14,6 +14,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _authService = AuthService();
   final _auth = FirebaseAuth.instance;
   String? email;
   String? password;
@@ -63,8 +64,6 @@ class _LoginPageState extends State<LoginPage> {
                 LoginButton(
                   buttonName: 'Log In',
                   onTouch: () async {
-                    print(password);
-                    print(email);
                     try {
                       final newUser = await _auth.signInWithEmailAndPassword(
                           email: email!, password: password!);
@@ -96,24 +95,36 @@ class _LoginPageState extends State<LoginPage> {
                   buttonName: 'Sing Up with Google',
                   onClick: () async {
                     try {
-                      UserCredential userCredential =
-                          await AuthService().signInWithGoogle();
+                      // Attempt to sign in with Google
+                      UserCredential? userCredential =
+                          await _authService.signInWithGoogle();
+
                       if (userCredential != null) {
+                        // Navigate to LandingPage on success
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) {
-                              return LandingPage();
-                            },
+                            builder: (context) => LandingPage(),
                           ),
                         );
+                      } else {
+                        // Handle case where sign-in fails or user cancels
+                        _authService.showErrorDialog(context,
+                            "Sign-in was canceled or email is invalid.");
                       }
                     } catch (e) {
+                      // Catch and display any exceptions during the sign-in process
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
                           title: const Text('Google Sign-In Failed'),
                           content: Text(e.toString()),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text('OK'),
+                            ),
+                          ],
                         ),
                       );
                     }
