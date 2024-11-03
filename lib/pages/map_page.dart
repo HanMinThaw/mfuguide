@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mfu_guide/user_location.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -9,8 +10,7 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  static const LatLng _pGooglePlex =
-      LatLng(20.044938883973135, 99.89423643403035);
+  UserLocation userLoc = UserLocation();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,9 +19,19 @@ class _MapPageState extends State<MapPage> {
       ),
       body: GoogleMap(
         initialCameraPosition: CameraPosition(
-          target: _pGooglePlex,
-          zoom: 18,
+          target: userLoc.pMsquare,
+          zoom: 16,
         ),
+        markers: {
+          Marker(
+              markerId: MarkerId("_currentLocation"),
+              icon: BitmapDescriptor.defaultMarker,
+              position: userLoc.pMsquare),
+          Marker(
+              markerId: MarkerId("_sourceLocation"),
+              icon: BitmapDescriptor.defaultMarker,
+              position: userLoc.pD1Canteen),
+        },
       ),
     );
   }
