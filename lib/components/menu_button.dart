@@ -4,15 +4,17 @@ class MenuButton extends StatelessWidget {
   final Color? buttonColor;
   final String? buttonName;
   final IconData? buttonIcon;
+  final Function()? onClicked;
   MenuButton(
       {required this.buttonColor,
       required this.buttonName,
-      required this.buttonIcon});
+      required this.buttonIcon,
+      this.onClicked});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onClicked,
       child: Container(
         padding: EdgeInsets.all(10),
         width: 165,

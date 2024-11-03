@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mfu_guide/pages/map_page.dart';
 
 import '../components/menu_button.dart';
 
@@ -31,13 +32,19 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               MenuButton(
-                  buttonColor: Color(0xFF67AB50),
-                  buttonName: 'Map Guide',
-                  buttonIcon: Icons.map),
+                buttonColor: Color(0xFF67AB50),
+                buttonName: 'Map Guide',
+                buttonIcon: Icons.map,
+                onClicked: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return MapPage();
+                  }));
+                },
+              ),
               MenuButton(
                   buttonColor: Color(0xFF6597E1),
                   buttonName: 'News',
-                  buttonIcon: Icons.article),
+                  buttonIcon: Icons.newspaper),
             ],
           ),
           SizedBox(

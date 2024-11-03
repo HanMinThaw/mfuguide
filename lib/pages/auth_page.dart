@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mfu_guide/pages/home_page.dart';
 import 'package:mfu_guide/pages/landing_page.dart';
 import 'package:mfu_guide/pages/login_page.dart';
 
